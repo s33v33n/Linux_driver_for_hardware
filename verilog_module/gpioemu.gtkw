@@ -1,0 +1,73 @@
+[*]
+[*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
+[*] Sat May 31 15:19:39 2025
+[*]
+[dumpfile] "C:\Users\micha\OneDrive\Pulpit\Studia_mgr\SEM2\SYKOM\Czerwinski_Michal\projekt\gpioemu.vcd"
+[dumpfile_mtime] "Sat May 31 14:42:56 2025"
+[dumpfile_size] 69725
+[savefile] "C:\Users\micha\OneDrive\Pulpit\Studia_mgr\SEM2\SYKOM\Czerwinski_Michal\projekt\gpioemu.gtkw"
+[timestart] 1440
+[size] 1873 885
+[pos] -1 -1
+*0.000000 140 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] gpioemu_tb.
+[sst_width] 211
+[signals_width] 166
+[sst_expanded] 1
+[sst_vpaned_height] 251
+@28
+gpioemu_tb.instancja.n_reset
+gpioemu_tb.instancja.swr
+@22
+gpioemu_tb.instancja.saddress[15:0]
+@24
+gpioemu_tb.instancja.sdata_in[31:0]
+gpioemu_tb.instancja.gpio_out_s[31:0]
+@420
+gpioemu_tb.instancja.i
+@28
+gpioemu_tb.instancja.crc_state[3:0]
+@22
+gpioemu_tb.instancja.sdata_out[31:0]
+@28
+gpioemu_tb.instancja.n_reset
+gpioemu_tb.instancja.swr
+@22
+gpioemu_tb.instancja.saddress[15:0]
+gpioemu_tb.instancja.sdata_in[31:0]
+@28
+gpioemu_tb.instancja.crc_state[3:0]
+@22
+gpioemu_tb.instancja.sdata_out_s[31:0]
+gpioemu_tb.instancja.saddress[15:0]
+@28
+gpioemu_tb.instancja.crc_state[3:0]
+@24
+gpioemu_tb.instancja.index[7:0]
+@22
+gpioemu_tb.instancja.crc[31:0]
+@420
+gpioemu_tb.instancja.byte_num
+@22
+gpioemu_tb.instancja.saddress[15:0]
+gpioemu_tb.instancja.sdata_in[31:0]
+@24
+gpioemu_tb.instancja.index[7:0]
+@420
+gpioemu_tb.instancja.byte_num
+@28
+gpioemu_tb.instancja.crc_state[3:0]
+@22
+gpioemu_tb.instancja.crc_result[15:0]
+gpioemu_tb.instancja.sdata_out[31:0]
+gpioemu_tb.instancja.saddress[15:0]
+@24
+gpioemu_tb.instancja.sdata_in[31:0]
+@420
+gpioemu_tb.instancja.i
+@22
+gpioemu_tb.instancja.sdata_out[31:0]
+@28
+gpioemu_tb.instancja.crc_state[3:0]
+[pattern_trace] 1
+[pattern_trace] 0
