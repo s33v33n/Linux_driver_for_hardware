@@ -1,0 +1,43 @@
+[*]
+[*] GTKWave save file for crcmodule_tb (crcmodule.v)
+[*] usage: gtkwave crcmodule.vcd crcmodule.gtkw
+[*]
+[dumpfile] "crcmodule.vcd"
+[timestart] 0
+[size] 1873 885
+[pos] -1 -1
+*-6.000000 0 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] crcmodule_tb.
+[treeopen] crcmodule_tb.crc_instance.
+[sst_width] 211
+[sst_vpaned_height] 251
+[signals_width] 200
+[sst_expanded] 1
+@200
+-Bus (CPU / QEMU <-> crcmodule)
+@28
+crcmodule_tb.crc_instance.clk
+crcmodule_tb.crc_instance.n_reset
+crcmodule_tb.crc_instance.swr
+crcmodule_tb.crc_instance.srd
+@22
+crcmodule_tb.crc_instance.saddress[15:0]
+crcmodule_tb.crc_instance.sdata_in[31:0]
+crcmodule_tb.crc_instance.sdata_out[31:0]
+@200
+-Module state
+@28
+crcmodule_tb.crc_instance.crc_state[3:0]
+@24
+crcmodule_tb.crc_instance.i[7:0]
+@200
+-CRC calculation
+@24
+crcmodule_tb.crc_instance.bytes[7:0]
+crcmodule_tb.crc_instance.byte_num[7:0]
+@22
+crcmodule_tb.crc_instance.index[7:0]
+crcmodule_tb.crc_instance.crc[15:0]
+crcmodule_tb.crc_instance.crc_result[15:0]
+[pattern_trace] 1
+[pattern_trace] 0
