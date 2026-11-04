@@ -1,0 +1,31 @@
+#!/bin/sh
+
+#
+# Load CrcModule driver at boot
+# S90 - lowest priority during startup 
+# rmmod crcmodule - unloads the driver and shuts down QEMU
+#
+
+case "$1" in
+    # first argument
+    start)
+        printf "Loading crcmodule: "
+        if insmod /lib/modules/crcmodule.ko; then
+            echo "OK"
+        else
+            echo "FAIL"
+        fi
+        ;;
+    # when power off QEMU
+    stop)
+        ;;
+
+    *)
+    # script name 
+        echo "Usage: $0 start"
+        exit 1
+        ;;
+esac
+
+
+exit 0
