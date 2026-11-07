@@ -1,0 +1,72 @@
+#!/bin/sh
+# crcmodule_test - checks all functions of the Verilog CRC16 module through sysfs
+# usage: crcmodule_test
+
+cd /sys/kernel/crcmodule_sysfs || exit 1
+
+errors=0
+
+# compare file content with expected value
+check() {
+    value=$(cat "$1")
+    if [ "$value" = "$2" ]; then
+        echo "    OK    $1 = $value"
+    else
+        echo "    FAIL  $1 = $value (expected $2)"
+        errors=$((errors + 1))
+    fi
+}
+
+# write bytes from $1 to $2 - 1 to IN
+write_bytes() {
+    b=$1
+    while [ "$b" -lt "$2" ]; do
+        echo "$b" > in
+        b=$((b + 1))
+    done
+}
+
+echo "[1] \"123456789\""
+for b in 0x31 0x32 0x33 0x34 0x35 0x36 0x37 0x38 0x39; do
+    echo "$b" > in
+done
+echo 0 > ctrl
+check state 0x09
+check result 0x4C06
+
+echo "[2] next data block: bytes 0..8"
+write_bytes 0 1
+check state 0x01
+check result 0xFFFF
+write_bytes 1 9
+echo 0 > ctrl
+check state 0x09
+check result 0xAD30
+
+echo "[3] CTRL with empty buffer - ignored"
+echo 0 > ctrl
+check state 0x09
+check result 0xAD30
+
+echo "[4] CTRL value other than 0x00 - ignored"
+echo 0x31 > in
+echo 5 > ctrl
+check state 0x01
+check result 0xFFFF
+echo 0 > ctrl
+check result 0xCD4F
+
+echo "[5] buffer full: 255 bytes written, only 250 accepted"
+write_bytes 0 255
+check state 0x00
+echo 0 > ctrl
+check state 0x09
+check result 0x42C9
+
+echo
+if [ "$errors" -eq 0 ]; then
+    echo "ALL TESTS PASSED"
+else
+    echo "$errors TEST(S) FAILED"
+    exit 1
+fi

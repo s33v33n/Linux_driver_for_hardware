@@ -64,3 +64,4 @@ gtkwave crcmodule.vcd crcmodule.gtkw                    # show waveforms
 ```
 
 <!-- Icarus Verilog / GTKWave screenshot -->
+![alt text](image.png)
