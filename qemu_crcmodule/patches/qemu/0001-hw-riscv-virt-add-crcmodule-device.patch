@@ -1,0 +1,37 @@
+Subject: [PATCH] hw/riscv/virt: add crcmodule device
+
+Adds the crcmodule device (Verilog CRC16 module simulated by Verilator)
+to the RISC-V virt board. Device source and libcrcmodule.a are taken from qemu_crcmodule/ in the
+project repository (build it with "make -C qemu_crcmodule" first).
+
+--- a/hw/misc/meson.build
++++ b/hw/misc/meson.build
+@@ -152,3 +152,11 @@
+ 
+ # HPPA devices
+ system_ss.add(when: 'CONFIG_LASI', if_true: files('lasi.c'))
++
++# crcmodule - Verilog CRC16 module (Verilator model built in the project repository)
++crcmodule_dir = meson.project_source_root() / '../../../../../qemu_crcmodule'
++crcmodule_dep = declare_dependency(
++  compile_args: ['-I' + crcmodule_dir],
++  link_args: ['-Wl,--whole-archive', crcmodule_dir / 'libcrcmodule.a', '-Wl,--no-whole-archive',
++              '-lstdc++', '-lm'])
++system_ss.add(when: 'CONFIG_RISCV_VIRT', if_true: [files(crcmodule_dir / 'crcmodule.c'), crcmodule_dep])
+--- a/hw/riscv/virt.c
++++ b/hw/riscv/virt.c
+@@ -1614,6 +1614,14 @@
+     /* SiFive Test MMIO device */
+     sifive_test_create(memmap[VIRT_TEST].base);
+ 
++    /* crcmodule (Verilog CRC16) - registers 0x200-0x21F on top of sifive_test */
++    {
++        DeviceState *crc = qdev_new("crcmodule");
++        sysbus_realize_and_unref(SYS_BUS_DEVICE(crc), &error_fatal);
++        sysbus_mmio_map_overlap(SYS_BUS_DEVICE(crc), 0,
++                                memmap[VIRT_TEST].base + 0x200, 1);
++    }
++
+     /* VirtIO MMIO devices */
+     for (i = 0; i < VIRTIO_COUNT; i++) {
+         sysbus_create_simple("virtio-mmio",
